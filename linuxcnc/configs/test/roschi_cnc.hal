@@ -1,0 +1,70 @@
+# Erstellt von stepconf am Tue Jul 16 23:06:39 2013
+# Änderungen an dieser Datei werden beim nächsten
+# Aufruf von stepconf überschrieben.
+loadusr -W lcec_conf /home/oslab/linuxcnc/configs/test/ethercat_config_n.xml
+loadrt lcec
+loadrt trivkins
+loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES
+
+
+addf lcec.read-all servo-thread
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+addf lcec.write-all servo-thread
+
+net bus_up lcec.state-op => iocontrol.0.emc-enable-in 
+
+setp lcec.0.0.drivecontrol-8 1
+setp lcec.0.0.drivecontrol-13 1
+setp lcec.0.0.drivecontrol-14 1
+setp lcec.0.0.signalcontrol-0 0
+
+setp lcec.0.1.drivecontrol-8 1
+setp lcec.0.1.drivecontrol-13 1
+setp lcec.0.1.drivecontrol-14 1
+setp lcec.0.1.signalcontrol-0 0
+
+setp lcec.0.2.drivecontrol-8 1
+setp lcec.0.2.drivecontrol-13 1
+setp lcec.0.2.drivecontrol-14 1
+setp lcec.0.2.signalcontrol-0 0
+
+
+
+
+net Xachse_fb lcec.0.0.pos => axis.0.motor-pos-fb
+net Xachse_cmd axis.0.motor-pos-cmd => lcec.0.0.poscommand
+net Xachse_speed_cmd axis.0.joint-vel-cmd => lcec.0.0.speedaddcommand
+
+net Xachse_homing_cmd axis.0.homing => lcec.0.0.signalcontrol-0
+net Xachse_homing_fb lcec.0.0.signalstatus-0 => axis.0.home-sw-in
+
+net Xachse_AF axis.0.amp-enable-out => lcec.0.0.drivecontrol-15
+net Xachse_Fault lcec.0.0.drivestatus-13 => axis.0.amp-fault-in
+net Xachse_torque lcec.0.0.torque
+
+net Yachse_fb lcec.0.1.pos => axis.1.motor-pos-fb
+net Yachse_cmd axis.1.motor-pos-cmd => lcec.0.1.poscommand
+net Yachse_speed_cmd axis.1.joint-vel-cmd => lcec.0.1.speedaddcommand
+
+net Yachse_homing_cmd axis.1.homing => lcec.0.1.signalcontrol-0
+net Yachse_homing_fb lcec.0.1.signalstatus-0 => axis.1.home-sw-in
+
+net Yachse_AF axis.1.amp-enable-out => lcec.0.1.drivecontrol-15
+net Yachse_Fault lcec.0.1.drivestatus-13 => axis.1.amp-fault-in
+net Yachse_torque lcec.0.1.torque
+
+net Zachse_fb lcec.0.2.pos => axis.2.motor-pos-fb
+net Zachse_cmd axis.2.motor-pos-cmd => lcec.0.2.poscommand
+net Zachse_speed_cmd axis.2.joint-vel-cmd => lcec.0.2.speedaddcommand
+
+net Zachse_homing_cmd axis.2.homing => lcec.0.2.signalcontrol-0
+net Zachse_homing_fb lcec.0.2.signalstatus-0 => axis.2.home-sw-in
+
+net Zachse_AF axis.2.amp-enable-out => lcec.0.2.drivecontrol-15
+net Zachse_Fault lcec.0.2.drivestatus-13 => axis.2.amp-fault-in
+net Zachse_torque lcec.0.2.torque
+
+net Spindel_enable motion.spindle-on => lcec.0.5.dout-0
+net Spindel_dir motion.spindle-reverse => lcec.0.5.dout-1
+
