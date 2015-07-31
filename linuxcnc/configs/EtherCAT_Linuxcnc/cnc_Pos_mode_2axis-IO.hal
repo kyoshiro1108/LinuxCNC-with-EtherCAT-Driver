@@ -1,5 +1,5 @@
 #load the XML config & the ethercat hal parser.
-loadusr -W lcec_conf /home/oslab/A5-slave-only2.xml
+loadusr -W lcec_conf /home/oslab/linuxcnc/configs/xml/Pana_A5B_Pos_2axis-IO.xml
 loadrt lcec
 
 #load the motion component

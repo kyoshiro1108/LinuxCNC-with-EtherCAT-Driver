@@ -1,4 +1,11 @@
 This Project is basic from sittner/linuxcnc-ethercat
+By this project, we can control Panasonic A5B series Servo Motors with Position Mode.
 
-By this project, we can control Panasonic A5B series Servo Motors with Position Mode and Velocity Mode.
+Linuxcnc folder contain the .hal.ini file...etc for LinuxCNC Configuration.
+
+Please use the 
+cnc_Pos_mode_1axis--------One axis Panasonic Servo Motor A5B series
+cnc_Pos_mode_2axis-IO-----Two axis Panasonic Servo Motor A5B series & EL2889 Output I/O
+to operate the CNC.
+
 

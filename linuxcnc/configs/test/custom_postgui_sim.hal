@@ -1,9 +1,0 @@
-# Benutzerdefinierte HAL-Anweisungen können nachfolgend angegeben werden
-# Die Befehle in dieser Datei werden nach der AXIS GUI (und PyVCP-Panel) ausgeführt.
-setp classicladder.0.in-00 1
-setp classicladder.0.in-01 1
-net emc-estop iocontrol.0.user-enable-out => classicladder.0.in-02
-
-net estop_out classicladder.0.out-00 => iocontrol.0.emc-enable-in
-
-net home_axis_0 axis.0.homing => classicladder.0.in-03
